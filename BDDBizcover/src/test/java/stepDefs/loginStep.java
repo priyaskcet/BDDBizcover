@@ -1,7 +1,5 @@
 package stepDefs;
 
-
-import java.io.File;
 import java.time.Duration;
 import java.util.concurrent.TimeUnit;
 
@@ -15,18 +13,18 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.cucumber.java.AfterStep;
-import io.cucumber.java.Before;
+
 import io.cucumber.java.en.And;
 
 import pageObjs.LoginPageobj;
-import pageObjs.Browsersetup;
+
 
 
 public class loginStep {
 	WebDriver driver;
 	LoginPageobj login;
 	WebDriverWait wait;
-	Browsersetup browser;
+	
 	
 
 	
