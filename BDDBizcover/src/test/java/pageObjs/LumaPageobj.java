@@ -11,9 +11,7 @@ import org.openqa.selenium.support.Color;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-
-
-public class LoginPageobj {
+public class LumaPageobj {
 
 		 WebDriver driver;
 		WebElement webelement;
@@ -28,6 +26,13 @@ public class LoginPageobj {
 		By login_btn= By.xpath("//button[@class=\"action login primary\"]");
 		By logout_options_click= By.xpath("//header/div[1]/div/ul/li[2]/span/button");
 		By logout_btn= By.xpath("//a[contains(text(),'Sign Out')]");
+		By btn_Myaccount= By.xpath("//*[@class=\"header links\"]/li/a[contains(text(),'My Account')]");
+		By lnk_Myorders= By.xpath("//a[contains(text(),\"My Orders\")]");
+		By myorders_table=By.xpath("//*[@id=\"my-orders-table\"]");
+		By myorder_col=By.xpath("//*[@id=\"my-orders-table\"]/thead/tr/th");
+		By myorder_row=By.xpath("//*[@id=\"my-orders-table\"]/tbody/tr");
+		
+		
 		By Home_Men= By.xpath("//a[@class='level-top ui-corner-all']//span[contains(text(),\"Men\")]");
 		By Home_Men_Tops= By.xpath("//*[@id=\"ui-id-17\"]//span[contains(text(),\"Tops\")]");
 		
@@ -52,7 +57,7 @@ public class LoginPageobj {
 		
 		
 		
-		public LoginPageobj(WebDriver driver,WebDriverWait wait)
+		public LumaPageobj(WebDriver driver,WebDriverWait wait)
 		{
 			this.driver=driver;
 			this.wait=wait;
@@ -83,11 +88,11 @@ public class LoginPageobj {
 		{
 			driver.findElement(logout_options_click).click();
 			driver.findElement(logout_btn).click();
+		
 		}
 		public void select_mentops()
 		{
-			System.out.println("Menjackets");
-			System.out.println(driver);
+			
 			action = new Actions(driver);
 			action.moveToElement(driver.findElement(Home_Men)).build().perform();
 			action.moveToElement(driver.findElement(Home_Men_Tops)).build().perform();
@@ -102,8 +107,7 @@ public class LoginPageobj {
 		}
 		public void select_menbottoms()
 		{
-			System.out.println("MenBottoms");
-			System.out.println(driver);
+		
 			action = new Actions(driver);
 			action.moveToElement(driver.findElement(Home_Men)).build().perform();
 			action.moveToElement(driver.findElement(Home_Men_Bottoms)).build().perform();
@@ -137,7 +141,7 @@ public class LoginPageobj {
 			    System.out.println(productname);
 				
 				if(arr[0].equalsIgnoreCase(productname))
-				{System.out.println("Entering for loop");
+				{
 				
 				driver.findElement(By.xpath(list_jackets_xpath)).click();
 				
@@ -160,13 +164,11 @@ public class LoginPageobj {
 				String list_pants_xpath="//*[@id=\"maincontent\"]/div[3]/div[1]/div[3]/ol/li["+i+"]";
 				String C=driver.findElement(By.xpath(list_pants_xpath)).getText();
 				String[] arr = C.split("\n");
-			
-			    System.out.println(arr[0]);
-			    System.out.println(productname);
+			   
 				
 				if(arr[0].equalsIgnoreCase(productname))
-				{System.out.println("Entering for loop");
-				
+				{
+					 System.out.println("User selects the  "+productname);
 				driver.findElement(By.xpath(list_pants_xpath)).click();
 				
 					break;
@@ -183,10 +185,11 @@ public class LoginPageobj {
 			String price_removedollar=price_removespace.replace("$", "");
 		
 			double price_final=Double.parseDouble(price_removedollar);
-			System.out.println(price_final);
+			
 			double total=price_final*qantity;
 			sum=sum+total;
-			System.out.println(sum);
+			System.out.println("Price of the product : "+ total );
+			System.out.println("Price in cart : "+sum);
 			
 		}
 		public void Select_productSize(String siz)
@@ -195,9 +198,9 @@ public class LoginPageobj {
 			
 			 List<WebElement> sizeoptions_elements = driver.findElements(By.xpath("//*[@class=\"swatch-option text\"]"));
 			int s= sizeoptions_elements.size();
-			 System.out.println(s);
+			 
 			sizeoptions_elements.get(0).getText();
-			 System.out.println(sizeoptions_elements.get(0).getText());
+			
 			String b = sizeoptions_elements.get(0).getText();
 			
 			for (int i=1;i<=s;i++) {
@@ -217,11 +220,11 @@ public class LoginPageobj {
 			
 			 List<WebElement> sizeoptions_elements = driver.findElements(By.xpath("//*[@class=\"swatch-option text\"]"));
 			int s= sizeoptions_elements.size();
-			System.out.println(s);
+		
 			for(int j=0;j<s;j++)
 			{
 				int pantsize=Integer.parseInt(sizeoptions_elements.get(j).getText());
-				System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$Select_bottomproductSize"+pantsize);
+				System.out.println("Size of pant : "+pantsize);
 				if(pantsize==siz)
 				{
 					sizeoptions_elements.get(j).click();
@@ -235,17 +238,17 @@ public class LoginPageobj {
 		{
 			 List<WebElement> coloroptions_elements = driver.findElements(By.xpath("//*[@class=\"swatch-option color\"]"));
 				int c= coloroptions_elements.size();
-				 System.out.println(c);
+				
 				 	for(int j=0;j<c;j++)
 				 	{
 				        coloroptions_elements.get(j).getText();
 				
 						String shirtcolour= coloroptions_elements.get(j).getCssValue("background-color");
 						String hexcolour=Color.fromString(shirtcolour).asHex();
-						System.out.println(shirtcolour);
-						System.out.println(hexcolour);
-						System.out.println(Color.fromString(colour).asHex());
-						System.out.println(Color.fromString(colour).asRgba());
+//						System.out.println(shirtcolour);
+//						System.out.println(hexcolour);
+//						System.out.println(Color.fromString(colour).asHex());
+//						System.out.println(Color.fromString(colour).asRgba());
 					
 					String Expcolour=Color.fromString(colour).asHex();
 						
@@ -299,12 +302,45 @@ public class LoginPageobj {
 		driver.findElement(btn_checkout_Placeorder).click();
 		wait.until(ExpectedConditions.visibilityOf(driver.findElement(get_ordernumber)));
 		orderNumber=driver.findElement(get_ordernumber).getText();
-		System.out.println(orderNumber);
-		System.out.println(sum);
+		System.out.println("Order number for order placed :"+orderNumber);
+		
+	
+	
 	}
 	
 	
+	public void goto_orders() throws InterruptedException
+	{
+		Thread.sleep(50);
+		driver.findElement(logout_options_click).click();
+		
+		driver.findElement(btn_Myaccount).click();
+		Thread.sleep(50);
+		driver.findElement(lnk_Myorders).click();
+	}
 	
+	public void verify_orderid_ordersummary()
+	{
+		
+		driver.findElement(myorders_table);
+		
+		List<WebElement> row = driver.findElements(myorder_row);
+		
+		List<WebElement> col = driver.findElements(myorder_col);
+		
+		for(int i=1;i<row.size();i++)
+		{
+			
+			String cellvalue = driver.findElement(By.xpath("//*[@id=\"my-orders-table\"]/tbody/tr["+i+"]/td[1]")).getText();
+			if (cellvalue.equalsIgnoreCase(orderNumber))
+			{
+			System.out.println("Placed order is listed in the My orders page : "+orderNumber);
+			System.out.println("Order number for order placed :"+orderNumber);
+			}
+			
+		}
+		
+	}	
 	public void verify_product_in_cart(String jacketname, String pantname)
 	{
 		
@@ -318,14 +354,12 @@ public class LoginPageobj {
 			
 			if(items1[0].equalsIgnoreCase(jacketname.replace("Jackshirt ", "Jackshirt")))
 			{
-			System.out.println("Items added in the cart are correct :"+items1[0]);
+			System.out.println("Correct products are added in the cart :"+items1[0]);
 			}else{if(items1[0].equalsIgnoreCase(pantname.replace("Pant ", "Pant")))
-				System.out.println("Items added in the cart are correct :"+items1[0]);
+				System.out.println("Correct products are added in the cart :"+items1[0]);
 			}
 			
-		}
-		
-		
+		}	
 	}
 	}
 

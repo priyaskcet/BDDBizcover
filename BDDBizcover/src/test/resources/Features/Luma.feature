@@ -11,12 +11,14 @@ Feature: Feature to test the Login Functionality
     Then User clicks on Add to cart
     And User Selects pants from mens bottom
     Then User selects <Pantname> from Pants
-    Then User select pant <PSize>, <Colour> and <Quantity>
+    Then User select pant <PSize>, <Colour> and <PQuantity>
     Then User clicks on Add to cart
     And Go to cart verify <Jacketname> , <Pantname> and proceed to checkout
     Then Place Order
+    And Go to My orders
+    Then Verify for the order number
+    Then Logout
 
-    #    Then  User is navigated to the home page
     Examples: 
-      | username               | password    | Jacketname                | Size | Colour | Quantity | Pantname         | PSize |
-      | priyait.siet@gmail.com | Abipriya55@ | Proteus Fitness Jackshirt | M    | black  |        2 | Cronus Yoga Pant |    32 |
+      | username               | password    | Jacketname                | Size | Colour | Quantity | Pantname         | PSize | PQuantity |
+      | prepri010203@gmail.com | Password@123 | Proteus Fitness Jackshirt | M    | black  |        2 | Cronus Yoga Pant |    32 |       1 |
